@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Kiuora</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="attendance">Ask a Question</string>
+    <string name="leave">Previous Question</string>
+    <string name="grievance">Profile</string>
+    <string name="login_to_kiet_hrms">Login to KIET WFMS</string>
+
+    <style name="wfms">Workforce Management System</style>
+
+</resources>
