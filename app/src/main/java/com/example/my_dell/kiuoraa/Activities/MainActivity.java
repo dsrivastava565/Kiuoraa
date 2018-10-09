@@ -2,6 +2,7 @@ package com.example.my_dell.kiuoraa.Activities;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,22 +11,77 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
+import com.example.my_dell.kiuoraa.BottomNavigationViewHelper;
+import com.example.my_dell.kiuoraa.Fragments.AskaQuestion;
+import com.example.my_dell.kiuoraa.Fragments.DashboardFragment;
+import com.example.my_dell.kiuoraa.Fragments.PreviousQuestion;
+import com.example.my_dell.kiuoraa.Fragments.profile;
 import com.example.my_dell.kiuoraa.R;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.navigation)
+    BottomNavigationView navigation;
+    @BindView(R.id.toolbar)
+    android.support.v7.widget.Toolbar toolbar;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_dashboard:
+                replaceFragment(new DashboardFragment());
+                break;
+            case R.id.navigation_attendance:
+                replaceFragment(new AskaQuestion());
+                break;
+            case R.id.navigation_leave:
+                replaceFragment(new PreviousQuestion());
+                break;
+            case R.id.navigation_grievance:
+                replaceFragment(new profile());
+                break;
+            }
+        return true;
+    };
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // replaceFragment(new DashboardFragment());
-//        getSupportFragmentManager()
-//                .addOnBackStackChangedListener(
-//                        () -> updateBottomNavigationTitle(getSupportFragmentManager().findFragmentById(R.id.container))
-//                );
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        setDefaultProgressBar(defaultProgressBar);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+        replaceFragment(new DashboardFragment());
+        getSupportFragmentManager()
+                .addOnBackStackChangedListener(
+                        () -> updateBottomNavigationTitle(getSupportFragmentManager().findFragmentById(R.id.container))
+                );
 
     }
+
+    public void updateBottomNavigationTitle(Fragment f) {
+        String className = f.getClass().getName();
+        if (className.equals(DashboardFragment.class.getName()))
+            navigation.getMenu().getItem(0).setChecked(true);
+        else if (className.equals(AskaQuestion.class.getName()))
+            navigation.getMenu().getItem(1).setChecked(true);
+        else if (className.equals(PreviousQuestion.class.getName()))
+            navigation.getMenu().getItem(2).setChecked(true);
+        else if (className.equals(profile.class.getName()))
+            navigation.getMenu().getItem(3).setChecked(true);
+    }
+
+
 
     private void replaceFragment(Fragment fragment) {
         String backStateName = fragment.getClass().getName();
