@@ -16,6 +16,8 @@ public class AskaQuestion extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ask_question, container, false);
         ButterKnife.bind(this, rootView);
+
+        
         return rootView;
     }
 }
