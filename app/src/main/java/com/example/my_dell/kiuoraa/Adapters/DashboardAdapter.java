@@ -77,17 +77,17 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull DashboardAdapter.view_holder holder, int position) {
-        holder.qustion.setText("Question : " + responseDashboard.get(position).getQues().getQuestion());
+        holder.qustion.setText("Question : " + responseDashboard.get(position).getQues().getQuestion()+"?");
         if (responseDashboard.get(position).getAnswer().size() == 0) {
             holder.answer.setTextColor(context.getResources().getColor(R.color.red));
             holder.answer.setText("Sorry No Answer");
-        } else
-
-            holder.answer.setText("Answer : " + responseDashboard.get(position).getAnswer().get(0).getAnswer());
+        } else{
+            holder.answeredby.setText("Answerd by :" + responseDashboard.get(position).getAnswer().get(0).getAddedByName());
+            holder.answer.setText("Answer : " + responseDashboard.get(position).getAnswer().get(0).getAnswer());}
 
         Log.e("sendi", new Gson().toJson(responseDashboard.get(position).getQues().getQuesId()));
 
-        holder.answeredby.setText("Answerd by :" + responseDashboard.get(position).getAnswer().get(0).getAddedByName());
+
         holder.addQues.setOnClickListener(new View.OnClickListener() {
 
             @Override

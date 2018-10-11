@@ -20,46 +20,47 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AllAnswersAdapter extends RecyclerView.Adapter<AllAnswersAdapter.view_holder> {
-    Context context;
-    Gson gson;
-    List<ResponseDashboard> responseDashboards;
-    int Positin;
+public class PreviousQuesAdapter extends RecyclerView.Adapter<PreviousQuesAdapter.view_holder> {
 
-    public AllAnswersAdapter(Context context, List<ResponseDashboard> responseDashboards, int Position) {
-        this.responseDashboards = responseDashboards;
-        this.context = context;
-        gson = new Gson();
-        this.Positin = Position;
+    public PreviousQuesAdapter(Context context, List<ResponseDashboard> responseDashboard, int sendUniq) {
+
     }
 
     @NonNull
     @Override
-    public AllAnswersAdapter.view_holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_answers_recycler, parent, false);
-        return new AllAnswersAdapter.view_holder(view);
+    public PreviousQuesAdapter.view_holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_recycler, parent, false);
+        return new PreviousQuesAdapter.view_holder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllAnswersAdapter.view_holder holder, int position) {
-    holder.qustion.setText(responseDashboards.get(Positin).getAnswer().get(position).getAnswer());
+    public void onBindViewHolder(@NonNull PreviousQuesAdapter.view_holder holder, int position) {
+
+
     }
+
 
     @Override
     public int getItemCount() {
-        return responseDashboards.get(Positin).getAnswer().size();
+        return 0;
     }
 
     public class view_holder extends RecyclerView.ViewHolder {
-        @BindView(R.id.allans)
+
+        @BindView(R.id.Questionatdashboard)
         TextView qustion;
+        @BindView(R.id.AnswerAtDashboard)
+        TextView answer;
+        @BindView(R.id.addQues)
+        ImageView addQues;
+        @BindView(R.id.answeredby)
+        TextView answeredby;
+
 
         public view_holder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
-
 }
-

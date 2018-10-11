@@ -7,6 +7,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,12 @@ import com.example.my_dell.kiuoraa.Networking.Models.ResponseDashboard;
 import com.example.my_dell.kiuoraa.Networking.Models.SignupResponse;
 import com.example.my_dell.kiuoraa.Networking.Services.AddquesRequest;
 import com.example.my_dell.kiuoraa.R;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +38,7 @@ public class PreviousQuesAndAnsBottomsheet extends BottomSheetDialogFragment {
     AddQuesRequest addQuesRequest;
     List<ResponseDashboard> responseDashboard;
     int position;
-    @BindView(R.id.send)
+    @BindView(R.id.send12)
     Button send;
     @BindView(R.id.recylerView)
     RecyclerView recyclerView;
@@ -48,16 +51,16 @@ public class PreviousQuesAndAnsBottomsheet extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
     }
 
-    BottomSheetDialog d;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.ques_ans, container, false);
+        ButterKnife.bind(this, rootView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new AllAnswersAdapter(getContext(),responseDashboard,position));
-        recyclerView.setNestedScrollingEnabled(false);
-
+        recyclerView.setNestedScrollingEnabled(true);
 
         return rootView;
     }
@@ -68,32 +71,32 @@ public class PreviousQuesAndAnsBottomsheet extends BottomSheetDialogFragment {
         this.responseDashboard = responseDashboard;
         this.position = position;
     }
+    @OnClick(R.id.send12)
+    public void setAddQuesRequest(){
 
-    @OnClick(R.id.send)
-        public void send(){
         addQuesRequest.setAnswer(editText.getText().toString());
-        AddquesRequest login = KiuoraApi.createService(AddquesRequest.class);
-                Call<SignupResponse> call = login.addques(addQuesRequest);
+                AddquesRequest login = KiuoraApi.createService(AddquesRequest.class);
+               Call<SignupResponse> call = login.addques(addQuesRequest);
                 call.enqueue(new Callback<SignupResponse>() {
                     @Override
-                    public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
-                        if (response.code() == 200) {
+                   public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                       if (response.code() == 200) {
                             Toast.makeText(getContext(), "Succesfully Entered", Toast.LENGTH_SHORT).show();
-                            Intent in = new Intent(getContext(),MainActivity.class);
+                           Intent in = new Intent(getContext(), MainActivity.class);
                             startActivity(in);
 
                         }
                     }
 
-                    @Override
-                    public void onFailure(Call<SignupResponse> call, Throwable t) {
-                        Toast.makeText(getContext(), " Some Error Occured", Toast.LENGTH_SHORT).show();
+                  @Override
+                   public void onFailure(Call<SignupResponse> call, Throwable t) {
+                       Toast.makeText(getContext(), " Some Error Occured", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
     }
+
+
+
 
 }
 

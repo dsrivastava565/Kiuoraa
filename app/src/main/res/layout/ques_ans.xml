@@ -54,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Send"
-            android:id="@+id/send"
+            android:background="@drawable/submitbutton"
+            android:id="@+id/send12"
             android:layout_marginTop="5dp"
             android:padding="5dp"/>
 
