@@ -1,5 +1,6 @@
 package com.example.my_dell.kiuoraa.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;

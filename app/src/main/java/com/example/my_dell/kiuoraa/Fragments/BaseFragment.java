@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.my_dell.kiuoraa.Activities.BaseActivity;
+import com.example.my_dell.kiuoraa.Networking.Models.LoginResponse;
 import com.github.pwittchen.reactivenetwork.library.rx2.Connectivity;
 
 import java.util.ArrayList;
@@ -36,9 +37,9 @@ public class BaseFragment extends Fragment {
         ((BaseActivity) getActivity()).putObjectInIntentExtras(key, obj);
     }
 
-    public <T> T getObjectFromIntentExtras(String key, Class<T> classOfT) {
-        return ((BaseActivity) getActivity()).getObjectFromIntentExtras(key, classOfT);
-    }
+//    public <T> T getObjectFromIntentExtras(String key, Object classOfT) {
+//        return ((BaseActivity) getActivity()).getObjectFromIntentExtras(key, classOfT);
+//    }
 
     public Bundle getIntentExtras() {
         return ((BaseActivity) getActivity()).getIntentExtras();

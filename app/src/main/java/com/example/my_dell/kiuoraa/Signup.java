@@ -1,6 +1,11 @@
 package com.example.my_dell.kiuoraa;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +17,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.my_dell.kiuoraa.Activities.BaseActivity;
 import com.example.my_dell.kiuoraa.Networking.Api.AccountApi;
+import com.example.my_dell.kiuoraa.Networking.KiuoraApi;
 import com.example.my_dell.kiuoraa.Networking.Models.SignupRequest;
+import com.example.my_dell.kiuoraa.Networking.Models.SignupResponse;
+import com.example.my_dell.kiuoraa.Networking.Services.SignIn;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -27,8 +36,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.internal.Utils;
 import io.reactivex.disposables.Disposable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class Signup extends AppCompatActivity {
+public class Signup extends BaseActivity {
     @BindView(R.id.number)
     EditText number;
     @BindView(R.id.dobsignup)
@@ -49,10 +61,12 @@ public class Signup extends AppCompatActivity {
     @BindView(R.id.signupbtn)
     Button signup;
     int gender_value;
+    SignupResponse newSIgn;
     public List<Disposable> disposables;
     List<String> c = new ArrayList<String>();
 SignupRequest signupRequest;
     final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +75,8 @@ SignupRequest signupRequest;
         ButterKnife.bind(this);
         dateFragment = new SelectDateFragment();
         dob.setText(sdf.format(new Date()));
+
+
         setGender();
         gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,8 +110,8 @@ SignupRequest signupRequest;
     public void setGender() {
 
         c.add(0, "Select");
-        c.add(1, "Male");
-        c.add(2, "Female");
+        c.add(1, "M");
+        c.add(2, "F");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, c);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,19 +120,51 @@ SignupRequest signupRequest;
     }
 
     @OnClick(R.id.signupbtn)
-    public void setSignup()
-    {
-     signupRequest= new SignupRequest();
-     signupRequest.setName(name.getText().toString());
-     signupRequest.setUsername(username.getText().toString());
-     signupRequest.setDob(dob.getText().toString());
-     signupRequest.setEmail(email.getText().toString());
-     signupRequest.setMobile(Integer.valueOf(number.getText().toString()));
-     signupRequest.setPassword(password.getText().toString());
-     signupRequest.setGender(c.get(gender_value));
-     Log.e("sign",new Gson().toJson(signupRequest));
+    public void setSignup() {
+        signupRequest = new SignupRequest();
+        signupRequest.setName(name.getText().toString());
+        signupRequest.setUsername(username.getText().toString());
+        signupRequest.setEmail(email.getText().toString());
+        signupRequest.setMobile(Integer.valueOf(number.getText().toString()));
+        signupRequest.setPassword(password.getText().toString());
+        signupRequest.setGender(c.get(gender_value));
+        String ps = password.getText().toString();
+        String cf = confirmpassword.getText().toString();
+        if (ps.equals(cf)) {
+
+            Log.e("sign", new Gson().toJson(signupRequest));
+            SignIn signIn = KiuoraApi.createService(SignIn.class);
+            Call<SignupResponse> call = signIn.send(signupRequest);
+            call.enqueue(new Callback<SignupResponse>() {
+                @Override
+                public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                    if (response.code() == 200) {
+                        newSIgn = response.body();
+                        Log.e("Res", new Gson().toJson(newSIgn));
+                        if (newSIgn.getName().equals("Username already taken")) {
+                            Toast.makeText(getApplicationContext(), "Username Already exist", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Successfully Registerd", Toast.LENGTH_SHORT).show();
+                            Intent in = new Intent(getApplicationContext(), LoginActivity.class);
+
+                            startActivity(in);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SignupResponse> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+        else
+            Toast.makeText(getApplicationContext(), "Passwords does not matched", Toast.LENGTH_LONG).show();
+    }
 
 
     }
 
-}
+
