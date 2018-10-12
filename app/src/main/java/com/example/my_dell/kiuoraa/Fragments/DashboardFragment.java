@@ -44,8 +44,6 @@ public class DashboardFragment extends BaseFragment {
     RecyclerView recyclerView;
     Gson gson = new Gson();
     Calendar calendar = Calendar.getInstance();
-    @BindView(R.id.swipeLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
     LoginResponse loginResponse1;
     SharedPreferences sharedPreferences;
 List<ResponseDashboard> responseDashboard = new ArrayList<>();
@@ -80,6 +78,7 @@ List<ResponseDashboard> responseDashboard = new ArrayList<>();
 
        // setView();
         hideDefaultProgress();
+
         return rootView;
 
     }

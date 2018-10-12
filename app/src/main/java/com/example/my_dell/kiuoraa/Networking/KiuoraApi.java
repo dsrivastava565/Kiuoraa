@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class KiuoraApi {
 
     private static Retrofit retrofit = null;
-    public static String API_BASE_URL = "http://10.21.66.99:8000/";
+    public static String API_BASE_URL = "http://192.168.43.88:8000/";
 
     static Retrofit getClient() {
 

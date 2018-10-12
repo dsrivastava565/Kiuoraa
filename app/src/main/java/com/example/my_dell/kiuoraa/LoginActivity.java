@@ -62,6 +62,8 @@ public class LoginActivity extends BaseActivity {
 //        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //        // putObjectInIntentExtras("LoginEmpId",loginResponse);
 //        startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
 
         SharedPreferences.Editor editor = getSharedPreferences("get", MODE_PRIVATE).edit();
         Login login = KiuoraApi.createService(Login.class);
@@ -87,7 +89,10 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                editor.putInt("idName", loginResponse.getUniq_id());
+                editor.apply();
+                startActivity(intent);
             }
         });
 

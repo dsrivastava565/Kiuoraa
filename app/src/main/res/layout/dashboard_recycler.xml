@@ -7,71 +7,81 @@
     android:background="@color/newwe"
     android:orientation="vertical">
 
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
-        android:elevation="7dp"
-        android:padding="4dp"
-        app:cardCornerRadius="6dp">
+        android:elevation="6dp"
+        app:cardCornerRadius="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="6dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/Questionatdashboard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="2"
-                android:maxLines="10"
-                android:fontFamily="monospace"
-                android:text="Question : Where Is your DWEKWW??"
-                android:textColor="@color/black"
-                android:textSize="17dp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/AnswerAtDashboard"
-                    android:layout_width="302dp"
-                    android:layout_height="match_parent"
-                    android:lines="3"
-                    android:maxLines="10"
-                    android:text="Answer:  "
-                    android:textColor="@color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:id="@+id/addQues"
-                        android:layout_marginRight="50dp"
-                        app:srcCompat="@drawable/ic_add_black_24dp" />
-
-                </LinearLayout>>
-
-            </LinearLayout>
-            <TextView
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/answeredby"
-                android:text="Answered by:"/>
-        </LinearLayout>
+                android:layout_gravity="end"
+                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Questionatdashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="serif"
+                    android:lines="3"
+                    android:maxLines="10"
+                    android:text="Question : Where Is dfdfddfd DWEKWW??"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/AnswerAtDashboard"
+                        android:layout_width="280dp"
+                        android:layout_height="match_parent"
+                        android:lines="3"
+                        android:maxLines="10"
+                        android:text="Answer : dsadasdasdasd  "
+                        android:textSize="15dp" />
+
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/addQues"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_add_black_24dp" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/answeredby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Answered by:"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+        </LinearLayout>
+        >
 
     </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.my_dell.kiuoraa.BottomNavigationViewHelper;
@@ -41,10 +42,12 @@ public class MainActivity extends BaseActivity {
                 replaceFragment(new AskaQuestion());
                 break;
             case R.id.navigation_leave:
-                replaceFragment(new PreviousQuestion());
+                Toast.makeText(getApplicationContext(),"UnderConstruction",Toast.LENGTH_SHORT).show();
+//                replaceFragment(new PreviousQuestion());
                 break;
             case R.id.navigation_grievance:
-                replaceFragment(new profile());
+                Toast.makeText(getApplicationContext(),"UnderConstruction",Toast.LENGTH_SHORT).show();
+              //  replaceFragment(new profile());
                 break;
             }
         return true;

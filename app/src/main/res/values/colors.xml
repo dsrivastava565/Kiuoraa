@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#54843b</color>
+    <color name="colorPrimary">#018786</color>
     <color name="colorPrimaryDark">#99323232</color>
-    <color name="colorAccent">#1e88e5</color>
-    <color name="colorAccentDark">#1565c0</color>
+    <color name="colorAccent">#018786</color>
+    <color name="colorAccentDark">#018786</color>
     <color name="red">#c62828</color>
     <color name="chipUnselected">#efefef</color>
     <color name="newwe">#d0cecf</color>

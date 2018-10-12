@@ -34,10 +34,10 @@ public class PreviousQuestion extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_previousques, container, false);
         ButterKnife.bind(this, rootView);
         sharedPreferences = this.getActivity().getSharedPreferences("get", MODE_PRIVATE);
-        int sendUniq = sharedPreferences.getInt("idName", 0);
+
 //        MyQues signIn = KiuoraApi.createService(MyQues.class);
 //        Call<List<ResponseDashboard>> call = signIn.myques(sendUniq);
 //        call.enqueue(new Callback<List<ResponseDashboard>>() {

@@ -58,7 +58,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
     LoginResponse loginResponse;
     int sendUniq;
 
-    public DashboardAdapter(Context context, List<ResponseDashboard> responseDashboard, int sendUniq) {
+    public DashboardAdapter(Context context,List<ResponseDashboard> responseDashboards,int sendUniq) {
         this.context = context;
         gson = new Gson();
         this.responseDashboard = responseDashboard;
@@ -102,12 +102,12 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
                 bottomSheet.show(manager, "TicketingDetail");
 
 
-//                addQuesRequest.setAnswer("Hello");
+               addQuesRequest.setAnswer("Hello");
 
-//
+
 
             }
-        });
+      });
     }
 
 

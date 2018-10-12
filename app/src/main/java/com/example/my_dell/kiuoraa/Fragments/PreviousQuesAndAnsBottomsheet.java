@@ -60,7 +60,7 @@ public class PreviousQuesAndAnsBottomsheet extends BottomSheetDialogFragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new AllAnswersAdapter(getContext(),responseDashboard,position));
-        recyclerView.setNestedScrollingEnabled(true);
+        recyclerView.setNestedScrollingEnabled(false);
 
         return rootView;
     }

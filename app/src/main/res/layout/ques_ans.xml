@@ -31,13 +31,15 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight=".9"
+                    android:layout_margin="4dp"
+                    android:layout_weight=".5"
                     android:background="@color/colorAccent"
                     android:paddingLeft="10dp"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:title=" Add an Answer"
                     app:titleTextColor="@color/white" />
+
+
 
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>
@@ -48,16 +50,32 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
             android:id="@+id/enterdans"
+            android:gravity="left"
             android:hint="Enter Your Answer "
             android:lines="3" />
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Send"
+            android:layout_width="290dp"
+            android:layout_height="48dp"
+            android:text="S e n d"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:paddingLeft="2dp"
             android:background="@drawable/submitbutton"
             android:id="@+id/send12"
             android:layout_marginTop="5dp"
             android:padding="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="Previous Answers"
+            android:textSize="25dp"
+            android:textStyle="normal"
+            app:fontFamily="@font/aclonica" />
 
 
         <RelativeLayout
@@ -65,13 +83,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-
             android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            android:paddingTop="10dp">
+            android:paddingTop="08dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recylerView"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
